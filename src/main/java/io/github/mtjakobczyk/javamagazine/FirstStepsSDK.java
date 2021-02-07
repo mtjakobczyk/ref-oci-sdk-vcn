@@ -3,7 +3,6 @@ package io.github.mtjakobczyk.javamagazine;
 import java.io.IOException;
 
 import com.oracle.bmc.ConfigFileReader;
-import com.oracle.bmc.auth.AuthenticationDetailsProvider;
 import com.oracle.bmc.auth.ConfigFileAuthenticationDetailsProvider;
 
 import com.oracle.bmc.core.VirtualNetworkClient;
@@ -17,8 +16,8 @@ public class FirstStepsSDK {
         String compartmentId = args[0];
         
         // Parse the .oci/config and use the authentication information from the DEFAULT profile  
-        ConfigFileReader.ConfigFile configFile = ConfigFileReader.parseDefault();
-        AuthenticationDetailsProvider ociAuthProvider = new ConfigFileAuthenticationDetailsProvider(configFile);
+        var configFile = ConfigFileReader.parseDefault();
+        var ociAuthProvider = new ConfigFileAuthenticationDetailsProvider(configFile);
         
         // Creating a client instance to interact with /20160918/vcns endpoint
         VirtualNetworkClient vnClient =  VirtualNetworkClient.builder().build(ociAuthProvider);
